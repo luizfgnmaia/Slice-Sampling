@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1573527297984.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3997768188",
+    "id" : "33F1FAA0",
+    "lastKnownWriteTime" : 1573530722,
+    "last_content_update" : 1573530722553,
+    "path" : "~/GitHub/Slice-Sampling/sim2.R",
+    "project_path" : "sim2.R",
+    "properties" : {
+        "cursorPosition" : "1,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1573527298601.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "299557975",
+    "id" : "71CAFB7B",
+    "lastKnownWriteTime" : 1573529027,
+    "last_content_update" : 1573529027495,
+    "path" : "~/GitHub/Slice-Sampling/sim3.R",
+    "project_path" : "sim3.R",
+    "properties" : {
+        "cursorPosition" : "26,12",
+        "scrollLine" : "20"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
