@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1573602692741.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "859210191",
+    "id" : "F70466ED",
+    "lastKnownWriteTime" : 1573609563,
+    "last_content_update" : 1573609563429,
+    "path" : "~/GitHub/Slice-Sampling/sim4.R",
+    "project_path" : "sim4.R",
+    "properties" : {
+        "cursorPosition" : "66,81",
+        "scrollLine" : "28",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
