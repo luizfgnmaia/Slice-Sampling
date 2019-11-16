@@ -1,0 +1,105 @@
+---
+title: "Exemplo beta"
+output: html_notebook
+---
+
+```{r, warning = FALSE, message = FALSE}
+library(dplyr)
+library(ggplot2)
+set.seed(1)
+```
+
+## Target distribution:
+```{r}
+tibble(x = c(0, 1)) %>%
+  ggplot(aes(x)) + 
+  stat_function(fun = dbeta, args = list(shape1 = 20, shape2 = 7)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ylab("") +
+  xlab("")
+```
+
+```{r}
+log_target <- function(x) {
+  dbeta(x = x, shape1 = 20, shape2 = 7, log = TRUE)
+}
+
+n_it = 10000 + 1
+x = 0.75
+```
+
+## Visualizando a primeira iteração
+
+(a) Draw a real value, y, uniformly from $(0, f (x_0))$, thereby defining a horizontal “slice”: $S = {x : y < f (x)}$.
+```{r}
+logy = log_target(x[1]) - rexp(1)
+y = exp(logy)
+y
+```
+
+(b) Find an interval, $I = (L, R)$, around $x_0$ that contains all, or much, of the slice.
+```{r}
+tibble(x = c(0, 1)) %>%
+  ggplot(aes(x)) + 
+  stat_function(fun = dbeta, args = list(shape1 = 20, shape2 = 7)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ylab("") +
+  xlab("") +
+  geom_hline(yintercept = y, col = "red", linetype = "dashed")
+```
+
+```{r}
+L = uniroot(f = function(x) {dbeta(x, shape1 = 20, shape2 = 7) - y}, interval = c(0, x[1]))$root
+R = uniroot(f = function(x) {dbeta(x, shape1 = 20, shape2 = 7) - y}, interval = c(x[1], 1))$root
+c(L, R)
+```
+
+```{r}
+tibble(x = c(0, 1)) %>%
+  ggplot(aes(x)) + 
+  stat_function(fun = dbeta, args = list(shape1 = 20, shape2 = 7)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ylab("") +
+  xlab("") +
+  geom_segment(aes(x = L, xend = R, y = y, yend = y), colour = "red", linetype = "dashed")
+```
+
+(c) Draw the new point, $x_1$, from the part of the slice within this interval.
+```{r}
+x[2] = runif(1, min = L, max = R)
+x[2]
+```
+
+## Repetindo o processo
+```{r}
+for(it in 3:n_it) {
+  logy = log_target(x[it-1]) - rexp(1)
+  y = exp(logy)
+  L = uniroot(f = function(x) {dbeta(x, shape1 = 20, shape2 = 7) - y}, interval = c(0, x[it-1]))$root
+  R = uniroot(f = function(x) {dbeta(x, shape1 = 20, shape2 = 7) - y}, interval = c(x[it-1], 1))$root
+  x[it] = runif(1, min = L, max = R)
+}
+```
+
+## Visualizando o resultado
+```{r}
+tibble(x = x) %>%
+  ggplot(aes(x = x)) + 
+  geom_histogram(aes(y =..density..),
+                 binwidth = 0.025, 
+                 colour = "black", 
+                 fill = "gray40") +
+  coord_cartesian(xlim = c(0, 1)) +
+  stat_function(fun = dbeta, args = list(shape1 = 20, shape2 = 7), n = 10^5,
+                xlim = c(0, 1)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ylab("") +
+  xlab("")
+```
+
+
+

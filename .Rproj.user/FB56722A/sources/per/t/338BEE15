@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1573928765842.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "940536590",
+    "id" : "338BEE15",
+    "lastKnownWriteTime" : 1573932164,
+    "last_content_update" : 1573932164698,
+    "path" : "~/GitHub/Slice-Sampling/exemplo_beta.Rmd",
+    "project_path" : "exemplo_beta.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "91,32",
+        "scrollLine" : "81",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

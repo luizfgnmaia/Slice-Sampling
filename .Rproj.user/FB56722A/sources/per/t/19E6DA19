@@ -12,7 +12,9 @@
     "path" : "~/GitHub/Slice-Sampling/resultados.Rmd",
     "project_path" : "resultados.Rmd",
     "properties" : {
-        "chunk_output_type" : "inline"
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "90,0",
+        "scrollLine" : "88"
     },
     "relative_order" : 5,
     "source_on_save" : false,
