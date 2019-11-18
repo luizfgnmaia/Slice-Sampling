@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1574099148501.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1579618790",
+    "id" : "7C6087E8",
+    "lastKnownWriteTime" : 1574099894,
+    "last_content_update" : 1574099894015,
+    "path" : "~/GitHub/Slice-Sampling/sim3.R",
+    "project_path" : "sim3.R",
+    "properties" : {
+        "cursorPosition" : "43,29",
+        "scrollLine" : "37"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

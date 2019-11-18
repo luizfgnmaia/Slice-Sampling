@@ -5,20 +5,20 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2817974353",
+    "hash" : "2954764174",
     "id" : "7D8C99B8",
-    "lastKnownWriteTime" : 1573651600,
-    "last_content_update" : 1573651600,
+    "lastKnownWriteTime" : 1574099801,
+    "last_content_update" : 1574099801642,
     "path" : "~/GitHub/Slice-Sampling/sim1.R",
     "project_path" : "sim1.R",
     "properties" : {
-        "cursorPosition" : "42,0",
-        "scrollLine" : "30"
+        "cursorPosition" : "25,4",
+        "scrollLine" : "20"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 5,
+    "relative_order" : 2,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

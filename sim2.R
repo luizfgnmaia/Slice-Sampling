@@ -29,6 +29,8 @@ x_atual = x[1,]
 x_prop = rep(NA, 9)
 log_target_x_prop = rep(NA, 9)
 log_target_x_atual = rep(NA, 9)
+cont_acc_v = 0
+cont_acc_x = rep(0, 9)
 
 set.seed(9)
 inicio = Sys.time()
@@ -42,6 +44,7 @@ for(it in 2:n_it) {
     log_target_v_prop = log_target_v(v_prop, x_atual)
     if(log(runif(1)) < (log_target_v_prop - log_target_v_atual)) {
       v_atual = v_prop
+      cont_acc_v = cont_acc_v + 1
     }
     for(i in 1:9) {
       x_prop[i] = x_atual[i] + rnorm(1)
@@ -49,6 +52,7 @@ for(it in 2:n_it) {
       log_target_x_prop[i] = log_target_x(v_atual, x_prop[i])
       if(log(runif(1)) < (log_target_x_prop[i] - log_target_x_atual[i])) {
         x_atual[i] = x_prop[i]
+        cont_acc_v[i] = cont_acc_v[i] + 1
       }
     }
   }

@@ -5,21 +5,21 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "635279879",
+    "hash" : "1539383294",
     "id" : "3151824E",
-    "lastKnownWriteTime" : 1574095959,
-    "last_content_update" : 1574095959613,
+    "lastKnownWriteTime" : 1574099863,
+    "last_content_update" : 1574099863662,
     "path" : "~/GitHub/Slice-Sampling/sim2.R",
     "project_path" : "sim2.R",
     "properties" : {
-        "cursorPosition" : "32,10",
-        "scrollLine" : "26",
+        "cursorPosition" : "54,41",
+        "scrollLine" : "42",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 4,
+    "relative_order" : 3,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

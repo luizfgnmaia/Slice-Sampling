@@ -23,6 +23,7 @@ x = matrix(NA, ncol = 9, nrow = n_it)
 x[1,] = 1
 x_atual = x[1,]
 log_target_atual = log_target(v_atual, x_atual)
+cont_acc = 0
 
 set.seed(7)
 inicio = Sys.time()
@@ -38,6 +39,7 @@ for(it in 2:n_it) {
       v_atual = v_prop
       x_atual = x_prop
       log_target_atual = log_target_prop
+      cont_acc = cont_acc + 1
     }
   }
   v[it] = v_atual

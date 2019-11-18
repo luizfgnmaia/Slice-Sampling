@@ -64,7 +64,7 @@ x = matrix(NA, ncol = 9, nrow = n_it)
 x[1,] = 1
 x_atual = x[1,]
 
-set.seed(19)
+set.seed(1511)
 inicio = Sys.time()
 pb = progress_bar$new(format = "[:bar] :percent in :elapsed",
                       total = 100, clear = FALSE, width = 80)
