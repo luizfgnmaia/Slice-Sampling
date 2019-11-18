@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1574095319803.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2545032435",
+    "id" : "6829E8A4",
+    "lastKnownWriteTime" : 1574095696,
+    "last_content_update" : 1574095696434,
+    "path" : "~/GitHub/Slice-Sampling/teste4.R",
+    "project_path" : "teste4.R",
+    "properties" : {
+        "cursorPosition" : "109,0",
+        "scrollLine" : "95",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

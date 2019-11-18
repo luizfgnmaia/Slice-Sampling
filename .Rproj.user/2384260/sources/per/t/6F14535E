@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1574095071728.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3353192924",
+    "id" : "6F14535E",
+    "lastKnownWriteTime" : 1574096242,
+    "last_content_update" : 1574096242403,
+    "path" : "~/GitHub/Slice-Sampling/resultados.Rmd",
+    "project_path" : "resultados.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,5 +1,7 @@
 # testar a ordem dos for
 
+# testar calcular as targets só na hora de usar
+
 ## 2. Single-variable Metropolis
 
 library(progress)
@@ -28,10 +30,13 @@ v_atual = 0
 x = matrix(NA, ncol = 9, nrow = n_it)
 x[1,] = 1
 x_atual = x[1,]
-log_target_v_atual = log_target_v(v_atual, x_atual)
-x_prop = x_atual
+#log_target_v_atual = log_target_v(v_atual, x_atual)
+#log_target_x_atual = log_target_x(v_atual, x_atual)
+x_prop = rep(NA, 9)
+log_target_x_prop = rep(NA, 9)
+log_target_x_atual = rep(NA, 9)
 
-set.seed(9999)
+set.seed(123)
 inicio = Sys.time()
 pb = progress_bar$new(format = "[:bar] :percent in :elapsed",
                       total = 100, clear = FALSE, width = 80)
@@ -39,25 +44,24 @@ pb$tick(1/n_it)
 for(it in 2:n_it) {
   for(up in 1:n_updates) {
     v_prop = v_atual + rnorm(1)
+    log_target_v_atual = log_target_v(v_atual, x_atual)
     log_target_v_prop = log_target_v(v_prop, x_atual)
     if(log(runif(1)) < (log_target_v_prop - log_target_v_atual)) {
       v_atual = v_prop
-      log_target_v_atual = log_target_v_prop
+      #log_target_v_atual = log_target_v_prop
+    }
+    for(i in 1:9) {
+      x_prop[i] = x_atual[i] + rnorm(1)
+      log_target_x_atual[i] = log_target_x(v_atual, x_atual[i])
+      log_target_x_prop[i] = log_target_x(v_atual, x_prop[i])
+      if(log(runif(1)) < (log_target_x_prop[i] - log_target_x_atual[i])) {
+        x_atual[i] = x_prop[i]
+        #log_target_x_atual[i] = log_target_x_prop[i]
+      }
     }
   }
   v[it] = v_atual
-  for(i in 1:9) {
-    log_target_x_atual = log_target_x(v_atual, x_atual[i])
-    for(up in 1:n_updates) {
-      x_prop[i] = x_atual[i] + rnorm(1)
-      log_target_x_prop = log_target_x(v_atual, x_prop[i])
-      if(log(runif(1)) < (log_target_x_prop - log_target_x_atual)) {
-        x_atual[i] = x_prop[i]
-        log_target_x_atual = log_target_x_prop
-      }
-    }
-    x[it,] = x_atual
-  }
+  x[it,] = x_atual
   pb$tick(100/n_it)  
 }
 duracao = Sys.time() - inicio

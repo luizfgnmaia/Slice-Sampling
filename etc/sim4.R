@@ -2,21 +2,12 @@
 
 library(progress)
 
-log_target_v <- function(v) {
-  dnorm(x = v, mean = 0, sd = 3, log = TRUE) + 
-    dnorm(x = x_atual[1], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
-    dnorm(x = x_atual[2], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
-    dnorm(x = x_atual[3], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
-    dnorm(x = x_atual[4], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
-    dnorm(x = x_atual[5], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
-    dnorm(x = x_atual[6], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
-    dnorm(x = x_atual[7], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
-    dnorm(x = x_atual[8], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
-    dnorm(x = x_atual[9], mean = 0, sd = sqrt(exp(v)), log = TRUE)
+log_target_v <- function(v) { 
+  dnorm(x = v, mean = 0, sd = 3, log = TRUE)
 }
 
-log_target_x <- function(x) {
-  dnorm(x = x, mean = 0, sd = sqrt(exp(v_atual)), log = TRUE)
+log_target_x <- function(x, v = v_atual) {
+  dnorm(x = x, mean = 0, sd = sqrt(exp(v)), log = TRUE)
 }
 
 stepping_out <- function(g, x0, y, w, m = 10^10) {
@@ -64,7 +55,7 @@ x = matrix(NA, ncol = 9, nrow = n_it)
 x[1,] = 1
 x_atual = x[1,]
 
-set.seed(19)
+set.seed(17)
 inicio = Sys.time()
 pb = progress_bar$new(format = "[:bar] :percent in :elapsed",
                       total = 100, clear = FALSE, width = 80)
@@ -74,13 +65,15 @@ for(it in 2:n_it) {
     y = log_target_v(v_atual) - rexp(1)
     I = stepping_out(g = log_target_v, x0 = v_atual, y = y, w = w)
     v_atual = shrinkage(g = log_target_v, x0 = v_atual, y = y, L = I[1], R = I[2])
-    for(i in 1:9) {
+  }
+  v[it] = v_atual
+  for(i in 1:9) {
+    for(up in 1:n_updates) {
       y = log_target_x(x_atual[i]) - rexp(1)
       I = stepping_out(g = log_target_x, x0 = x_atual[i], y = y, w = w)
       x_atual[i] = shrinkage(g = log_target_x, x0 = x_atual[i], y = y, L = I[1], R = I[2])
     }
   }
-  v[it] = v_atual
   x[it,] = x_atual
   pb$tick(100/n_it)  
 }

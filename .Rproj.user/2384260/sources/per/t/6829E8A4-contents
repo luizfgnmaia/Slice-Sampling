@@ -64,7 +64,7 @@ x = matrix(NA, ncol = 9, nrow = n_it)
 x[1,] = 1
 x_atual = x[1,]
 
-set.seed(19)
+set.seed(17)
 inicio = Sys.time()
 pb = progress_bar$new(format = "[:bar] :percent in :elapsed",
                       total = 100, clear = FALSE, width = 80)
@@ -86,6 +86,24 @@ for(it in 2:n_it) {
 }
 duracao = Sys.time() - inicio
 
-v4 = v
-save(v4, file = "data/v4.RData")
-save.image(file = "data/sim4.RData")
+#v4 = v
+#save(v4, file = "data/v4.RData")
+#save.image(file = "data/sim4.RData")
+
+library(dplyr)
+library(ggplot2)
+
+tib = tibble(it = 0:2000, v)
+
+tib %>%
+  ggplot(aes(x = it, y = v)) +
+  geom_point() +
+  xlab("") +
+  ylab("") +
+  ylim(-10, 10) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        plot.margin = margin(0, 0.5, 0, 0, "cm")) +
+  geom_hline(yintercept = 7.5, linetype = "dashed") +
+  geom_hline(yintercept = -7.5, linetype = "dashed") +
+  scale_x_continuous(expand = c(0, 0))

@@ -1,0 +1,220 @@
+---
+title: "Resultados"
+output: html_notebook
+---
+
+```{r, warning = FALSE, message = FALSE}
+library(dplyr)
+library(ggplot2)
+
+load("data/v1.RData")
+load("data/v2.RData")
+load("data/v3.RData")
+load("data/v4.RData")
+     
+tib = tibble(it = 0:2000, v1, v2, v3, v4)
+```
+
+```{r}
+apply(tib[2:5], 2, mean)
+```
+
+```{r}
+apply(tib[2:5], 2, sd)
+```
+
+```{r, fig.height = 5, fig.width = 10}
+scatter1 = tib %>%
+  ggplot(aes(x = it, y = v1)) +
+  geom_point() +
+  xlab("") +
+  ylab("") +
+  ylim(-10, 10) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        plot.margin = margin(0, 0.5, 0, 0, "cm")) +
+  geom_hline(yintercept = 7.5, linetype = "dashed") +
+  geom_hline(yintercept = -7.5, linetype = "dashed") +
+  scale_x_continuous(expand = c(0, 0))
+scatter1
+```
+
+```{r, fig.height = 5, fig.width = 10}
+scatter2 = tib %>%
+  ggplot(aes(x = it, y = v2)) +
+  geom_point() +
+  xlab("") +
+  ylab("") +
+  ylim(-10, 10) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        plot.margin = margin(0, 0.5, 0, 0, "cm")) +
+  geom_hline(yintercept = 7.5, linetype = "dashed") +
+  geom_hline(yintercept = -7.5, linetype = "dashed") +
+  scale_x_continuous(expand = c(0, 0))
+scatter2
+```
+
+```{r, fig.height = 5, fig.width = 10}
+scatter3 = tib %>%
+  ggplot(aes(x = it, y = v3)) +
+  geom_point() +
+  xlab("") +
+  ylab("") +
+  ylim(-10, 10) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        plot.margin = margin(0, 0.5, 0, 0, "cm")) +
+  geom_hline(yintercept = 7.5, linetype = "dashed") +
+  geom_hline(yintercept = -7.5, linetype = "dashed") +
+  scale_x_continuous(expand = c(0, 0))
+scatter3
+```
+
+```{r, fig.height = 5, fig.width = 10}
+scatter4 = tib %>%
+  ggplot(aes(x = it, y = v4)) +
+  geom_point() +
+  xlab("") +
+  ylab("") +
+  ylim(-10, 10) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        plot.margin = margin(0, 0.5, 0, 0, "cm")) +
+  geom_hline(yintercept = 7.5, linetype = "dashed") +
+  geom_hline(yintercept = -7.5, linetype = "dashed") +
+  scale_x_continuous(expand = c(0, 0))
+scatter4
+```
+
+```{r}
+hist1 = tib %>%
+  ggplot(aes(x = v1)) + 
+  geom_histogram(aes(y =..density..),
+                 binwidth = 0.5, 
+                 colour = "black", 
+                 fill = "gray40") +
+  coord_cartesian(xlim = c(-10, 10)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 3), n = 10^5,
+                xlim = c(-10, 10)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ylab("") +
+  xlab("")
+hist1
+```
+
+```{r}
+hist2 = tib %>%
+  ggplot(aes(x = v2)) + 
+  geom_histogram(aes(y =..density..),
+                 binwidth = 0.5, 
+                 colour = "black", 
+                 fill = "gray40") +
+  coord_cartesian(xlim = c(-10, 10)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 3), n = 10^5,
+                xlim = c(-10, 10)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ylab("") +
+  xlab("")
+hist2
+```
+
+```{r}
+hist3 = tib %>%
+  ggplot(aes(x = v3)) + 
+  geom_histogram(aes(y =..density..),
+                 binwidth = 0.5, 
+                 colour = "black", 
+                 fill = "gray40") +
+  coord_cartesian(xlim = c(-10, 10)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 3), n = 10^5,
+                xlim = c(-10, 10)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ylab("") +
+  xlab("")
+hist3
+```
+
+```{r}
+hist4 = tib %>%
+  ggplot(aes(x = v4)) + 
+  geom_histogram(aes(y =..density..),
+                 binwidth = 0.5, 
+                 colour = "black", 
+                 fill = "gray40") +
+  coord_cartesian(xlim = c(-10, 10)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 3), n = 10^5,
+                xlim = c(-10, 10)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ylab("") +
+  xlab("")
+hist4
+```
+
+```{r}
+qq1 = tib %>%
+  ggplot(aes(sample = v1)) + 
+  stat_qq(distribution = qnorm, dparams = list(mean = 0, sd = 3)) + 
+  stat_qq_line(distribution = qnorm, dparams = list(mean = 0, sd = 3)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  xlab("Quantis teóricos") +
+  ylab("Quantis da amostra")
+qq1
+```
+
+```{r}
+qq2 = tib %>%
+  ggplot(aes(sample = v2)) + 
+  stat_qq(distribution = qnorm, dparams = list(mean = 0, sd = 3)) + 
+  stat_qq_line(distribution = qnorm, dparams = list(mean = 0, sd = 3)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  xlab("Quantis teóricos") +
+  ylab("Quantis da amostra")
+qq2
+```
+
+```{r}
+qq3 = tib %>%
+  ggplot(aes(sample = v3)) + 
+  stat_qq(distribution = qnorm, dparams = list(mean = 0, sd = 3)) + 
+  stat_qq_line(distribution = qnorm, dparams = list(mean = 0, sd = 3)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  xlab("Quantis teóricos") +
+  ylab("Quantis da amostra")
+qq3
+```
+
+```{r}
+qq4 = tib %>%
+  ggplot(aes(sample = v4)) + 
+  stat_qq(distribution = qnorm, dparams = list(mean = 0, sd = 3)) + 
+  stat_qq_line(distribution = qnorm, dparams = list(mean = 0, sd = 3)) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  xlab("Quantis teóricos") +
+  ylab("Quantis da amostra")
+qq4
+```
+
+```{r}
+shapiro.test(tib$v1)
+```
+
+```{r}
+shapiro.test(tib$v2)
+```
+
+```{r}
+shapiro.test(tib$v3)
+```
+
+```{r}
+shapiro.test(tib$v4)
+```

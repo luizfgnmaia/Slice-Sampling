@@ -1,8 +1,0 @@
-"0","L = uniroot(f = function(x) {dbeta(x, shape1 = 20, shape2 = 7) - y}, interval = c(0, x[1]))$root"
-"0","R = uniroot(f = function(x) {dbeta(x, shape1 = 20, shape2 = 7) - y}, interval = c(x[1], 1))$root"
-"0","c(L, R)"
-"1","[1]"
-"1"," 0.6454903"
-"1"," 0.8537640"
-"1","
-"

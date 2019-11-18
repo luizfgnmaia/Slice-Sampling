@@ -1,7 +1,0 @@
-"0","for(it in 3:n_it) {"
-"0","  logy = log_target(x[it-1]) - rexp(1)"
-"0","  y = exp(logy)"
-"0","  L = uniroot(f = function(x) {dbeta(x, shape1 = 20, shape2 = 7) - y}, interval = c(0, x[it-1]))$root"
-"0","  R = uniroot(f = function(x) {dbeta(x, shape1 = 20, shape2 = 7) - y}, interval = c(x[it-1], 1))$root"
-"0","  x[it] = runif(1, min = L, max = R)"
-"0","}"

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1574095950059.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2817974353",
+    "id" : "7D8C99B8",
+    "lastKnownWriteTime" : 1573651600,
+    "last_content_update" : 1573651600,
+    "path" : "~/GitHub/Slice-Sampling/sim1.R",
+    "project_path" : "sim1.R",
+    "properties" : {
+        "cursorPosition" : "42,0",
+        "scrollLine" : "30"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
