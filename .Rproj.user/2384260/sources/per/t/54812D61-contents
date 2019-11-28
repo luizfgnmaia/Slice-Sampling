@@ -27,10 +27,12 @@ stepping_out <- function(g, x0, y, w, m = 10^10) {
   J = floor(m * V)
   K = (m - 1) - J
   while(J > 0 & y < g(L)) {
+    cont_eval <<- cont_eval + 1
     L = L - w
     J = J - 1
   }
   while(K > 0 & y < g(R)) {
+    cont_eval <<- cont_eval + 1
     R = R + w
     K = K - 1
   }
@@ -43,6 +45,7 @@ shrinkage <- function(g, x0, y, L, R) {
   while(TRUE) {
     U = runif(1)
     x1 = Lbar + U * (Rbar - Lbar)
+    cont_eval <<- cont_eval + 1
     if(y < g(x1)) {
       break
     }
@@ -63,6 +66,7 @@ v_atual = 0
 x = matrix(NA, ncol = 9, nrow = n_it)
 x[1,] = 1
 x_atual = x[1,]
+cont_eval = 0
 
 set.seed(1511)
 inicio = Sys.time()

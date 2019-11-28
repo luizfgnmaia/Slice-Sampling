@@ -1,0 +1,2 @@
+"0","load(""data/sim4.RData"")"
+"0","duracao4 = as.numeric(duracao)"

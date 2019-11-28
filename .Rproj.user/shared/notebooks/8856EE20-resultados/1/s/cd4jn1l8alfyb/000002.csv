@@ -1,0 +1,3 @@
+"0","load(""data/sim3.RData"")"
+"0","duracao3 = as.numeric(duracao)"
+"0","acc3 = cont_acc/(n_updates*n_it)"

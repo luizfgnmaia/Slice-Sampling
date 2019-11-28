@@ -1,0 +1,4 @@
+"0","load(""data/sim2.RData"")"
+"0","duracao2 = as.numeric(duracao)"
+"0","acc2_v = cont_acc_v/(n_updates*n_it)"
+"0","acc2_x = sum(cont_acc_x)/(n_updates*n_it*9)"

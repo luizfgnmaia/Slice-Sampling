@@ -52,7 +52,7 @@ for(it in 2:n_it) {
       log_target_x_prop[i] = log_target_x(v_atual, x_prop[i])
       if(log(runif(1)) < (log_target_x_prop[i] - log_target_x_atual[i])) {
         x_atual[i] = x_prop[i]
-        cont_acc_v[i] = cont_acc_v[i] + 1
+        cont_acc_x[i] = cont_acc_x[i] + 1
       }
     }
   }

@@ -6,6 +6,7 @@ output: html_notebook
 ```{r, warning = FALSE, message = FALSE}
 library(dplyr)
 library(ggplot2)
+library(gridExtra)
 
 load("data/v1.RData")
 load("data/v2.RData")
@@ -16,11 +17,13 @@ tib = tibble(it = 0:2000, v1, v2, v3, v4)
 ```
 
 ```{r}
-apply(tib[2:5], 2, mean)
+media = apply(tib[2:5], 2, mean)
+media
 ```
 
 ```{r}
-apply(tib[2:5], 2, sd)
+dp = apply(tib[2:5], 2, sd)
+dp
 ```
 
 ```{r, fig.height = 5, fig.width = 10}
@@ -218,3 +221,122 @@ shapiro.test(tib$v3)
 ```{r}
 shapiro.test(tib$v4)
 ```
+
+```{r, fig.height = 10, fig.width = 20}
+grid.arrange(scatter1, grid.arrange(hist1, qq1, ncol = 2))
+```
+
+```{r, fig.height = 10, fig.width = 20}
+grid.arrange(scatter2, grid.arrange(hist2, qq2, ncol = 2))
+```
+
+```{r, fig.height = 10, fig.width = 20}
+grid.arrange(scatter3, grid.arrange(hist3, qq3, ncol = 2))
+```
+
+```{r, fig.height = 10, fig.width = 20}
+grid.arrange(scatter4, grid.arrange(hist4, qq4, ncol = 2))
+```
+
+<hr>
+
+```{r}
+load("data/sim1.RData")
+duracao1 = as.numeric(duracao)
+acc1 = cont_acc/(n_updates*n_it)
+```
+
+```{r}
+load("data/sim2.RData")
+duracao2 = as.numeric(duracao)
+acc2_v = cont_acc_v/(n_updates*n_it)
+acc2_x = sum(cont_acc_x)/(n_updates*n_it*9)
+```
+
+```{r}
+load("data/sim3.RData")
+duracao3 = as.numeric(duracao)
+acc3 = cont_acc/(n_updates*n_it)
+```
+
+```{r}
+load("data/sim4.RData")
+duracao4 = as.numeric(duracao)
+```
+
+```{r}
+acc1*100
+```
+
+```{r}
+acc2_v*100
+```
+
+```{r}
+acc2_x*100
+```
+
+```{r}
+acc3*100
+```
+
+```{r}
+c(duracao1, duracao2, duracao3, duracao4)
+```
+
+```{r}
+fac1 = as.numeric(acf(v1, plot = FALSE)$acf)
+
+pfac1 = tibble(Lag = 0:33, FAC = fac1) %>%
+  ggplot(aes(x = Lag, y = FAC)) +
+  geom_hline(aes(yintercept = 0)) +
+  geom_bar(width = 0.5, stat = "identity", position = position_dodge()) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ggtitle("Metropolis multivariado")
+pfac1
+```
+
+```{r}
+fac2 = as.numeric(acf(v2, plot = FALSE)$acf)
+
+pfac2 = tibble(Lag = 0:33, FAC = fac2) %>%
+  ggplot(aes(x = Lag, y = FAC)) +
+  geom_hline(aes(yintercept = 0)) +
+  geom_bar(width = 0.5, stat = "identity", position = position_dodge()) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ggtitle("Metropolis univariado")
+pfac2
+```
+
+```{r}
+fac3 = as.numeric(acf(v3, plot = FALSE)$acf)
+
+pfac3 = tibble(Lag = 0:33, FAC = fac3) %>%
+  ggplot(aes(x = Lag, y = FAC)) +
+  geom_hline(aes(yintercept = 0)) +
+  geom_bar(width = 0.5, stat = "identity", position = position_dodge()) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ggtitle("Metropolis multivariado com variância aleatória")
+pfac3
+```
+
+```{r}
+fac4 = as.numeric(acf(v4, plot = FALSE)$acf)
+
+pfac4 = tibble(Lag = 0:33, FAC = fac4) %>%
+  ggplot(aes(x = Lag, y = FAC)) +
+  geom_hline(aes(yintercept = 0)) +
+  geom_bar(width = 0.5, stat = "identity", position = position_dodge()) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  ggtitle("Slide sampling univariado")
+pfac4
+```
+
+```{r, fig.width = 10, fig.height = 5, res = 300}
+grid.arrange(pfac1, pfac2, pfac3, pfac4, nrow = 2)
+```
+
