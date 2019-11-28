@@ -1,6 +1,8 @@
-## 1. Multivariate Metropolis
+## 3. Multivariate Metropolis Random Variance
 
-log_target <- function(v, x) { 
+library(progress)
+
+log_target <- function(v, x) { # x é um vetor de 9 posições
   dnorm(x = v, mean = 0, sd = 3, log = TRUE) + 
     dnorm(x = x[1], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
     dnorm(x = x[2], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
@@ -23,13 +25,17 @@ x_atual = x[1,]
 log_target_atual = log_target(v_atual, x_atual)
 cont_acc = 0
 
-set.seed(7)
+set.seed(11)
 inicio = Sys.time()
-
+pb = progress_bar$new(format = "[:bar] :percent in :elapsed",
+                      total = 100, clear = FALSE, width = 80)
+pb$tick(1/n_it)
 for(it in 2:n_it) {
   for(up in 1:n_updates) {
-    v_prop = v_atual + rnorm(1)
-    x_prop = x_atual + rnorm(9)
+    u = runif(1, min = -3, max = 3)
+    sd_prop = 10^u
+    v_prop = v_atual + rnorm(1, sd = sd_prop)
+    x_prop = x_atual + rnorm(9, sd = sd_prop)
     log_target_prop = log_target(v_prop, x_prop)
     if(log(runif(1)) < (log_target_prop - log_target_atual)) {
       v_atual = v_prop
@@ -40,14 +46,13 @@ for(it in 2:n_it) {
   }
   v[it] = v_atual
   x[it,] = x_atual
+  pb$tick(100/n_it)
 }
-
 duracao = Sys.time() - inicio
 
-v1 = v
-dir.create("data")
-save(v1, file = "data/v1.RData")
-save.image(file = "data/sim1.RData")
+v3 = v
+save(v3, file = "data/v3.RData")
+save.image(file = "data/sim3.RData")
 
 
 

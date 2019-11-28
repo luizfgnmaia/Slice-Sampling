@@ -1,7 +1,5 @@
 ## 4. Single-variable Slice Sampling
 
-library(progress)
-
 log_target_v <- function(v) {
   dnorm(x = v, mean = 0, sd = 3, log = TRUE) + 
     dnorm(x = x_atual[1], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
@@ -27,12 +25,10 @@ stepping_out <- function(g, x0, y, w, m = 10^10) {
   J = floor(m * V)
   K = (m - 1) - J
   while(J > 0 & y < g(L)) {
-    cont_eval <<- cont_eval + 1
     L = L - w
     J = J - 1
   }
   while(K > 0 & y < g(R)) {
-    cont_eval <<- cont_eval + 1
     R = R + w
     K = K - 1
   }
@@ -45,7 +41,6 @@ shrinkage <- function(g, x0, y, L, R) {
   while(TRUE) {
     U = runif(1)
     x1 = Lbar + U * (Rbar - Lbar)
-    cont_eval <<- cont_eval + 1
     if(y < g(x1)) {
       break
     }
@@ -66,13 +61,10 @@ v_atual = 0
 x = matrix(NA, ncol = 9, nrow = n_it)
 x[1,] = 1
 x_atual = x[1,]
-cont_eval = 0
 
 set.seed(1511)
 inicio = Sys.time()
-pb = progress_bar$new(format = "[:bar] :percent in :elapsed",
-                      total = 100, clear = FALSE, width = 80)
-pb$tick(1/n_it)
+
 for(it in 2:n_it) {
   for(up in 1:n_updates) {
     y = log_target_v(v_atual) - rexp(1)
@@ -86,8 +78,8 @@ for(it in 2:n_it) {
   }
   v[it] = v_atual
   x[it,] = x_atual
-  pb$tick(100/n_it)  
 }
+
 duracao = Sys.time() - inicio
 
 v4 = v

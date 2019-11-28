@@ -1,8 +1,6 @@
 ## 3. Multivariate Metropolis Random Variance
 
-library(progress)
-
-log_target <- function(v, x) { # x é um vetor de 9 posições
+log_target <- function(v, x) { 
   dnorm(x = v, mean = 0, sd = 3, log = TRUE) + 
     dnorm(x = x[1], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
     dnorm(x = x[2], mean = 0, sd = sqrt(exp(v)), log = TRUE) + 
@@ -27,9 +25,7 @@ cont_acc = 0
 
 set.seed(11)
 inicio = Sys.time()
-pb = progress_bar$new(format = "[:bar] :percent in :elapsed",
-                      total = 100, clear = FALSE, width = 80)
-pb$tick(1/n_it)
+
 for(it in 2:n_it) {
   for(up in 1:n_updates) {
     u = runif(1, min = -3, max = 3)
@@ -46,8 +42,8 @@ for(it in 2:n_it) {
   }
   v[it] = v_atual
   x[it,] = x_atual
-  pb$tick(100/n_it)
 }
+
 duracao = Sys.time() - inicio
 
 v3 = v
